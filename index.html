@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">InvoiceGenerator.com</div>
+        <ul class="nav-links">
+            <li><a href="#">Help</a></li>
+            <li><a href="#">History</a></li>
+            <li><a href="#">Invoicing Guide</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <button class="sign-in">Sign In</button>
+            <button class="sign-up">Sign Up</button>
+        </div>
+    </nav>
+
+
+    <div class="controls">
+        <div class="currency-selector">
+            <label for="currency">Currency: </label>
+            <select id="currency"></select> <!-- Dropdown untuk mata uang -->
+            <button id="add-item">+ Line Item</button>
+            <button class="generate" id="generate-pdf">Generate PDF</button>
+        </div>
+    </div>
+
+    <div class="container" id="invoice">
+        <div class="header">
+            <h1>INVOICE</h1>
+            <div>#<input type="text" id="invoice-number" placeholder=""></div>
+        </div>
+
+        <div class="details">
+            <div>Date: <input type="date" id="date"></div>
+        </div>
+
+        <div class="details">
+            <div>
+                <h3>Bill To:</h3>
+                <p><input type="text" id="bill-to-name" placeholder=""></p>
+            </div>
+            <div>
+                <h3>Ship To:</h3>
+                <p><input type="text" id="ship-to-address" placeholder="Shipping Address"></p>
+            </div>
+        </div>
+
+        <table id="invoice-items">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th class="quantity-column">Quantity</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" placeholder="Item Description"></td>
+                    <td><input type="number" value="1" class="quantity" oninput="updateItemAmount(this)"></td>
+                    <td><input type="text" value="0" class="rate" oninput="updateItemAmount(this)"></td>
+                    <td class="amount">0</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="totals">
+            <div class="totals-row">
+                <div>Subtotal:</div>
+                <span id="subtotal">0</span>
+            </div>
+            <div class="totals-row">
+                <div>Tax (<input type="number" id="tax-rate" value="0" style="width: 50px;">%):</div>
+                <span id="tax">0</span>
+            </div>
+            <div class="totals-row">
+                <div>Total:</div>
+                <span id="total">0</span>
+            </div>
+        </div>
+
+        <div class="notes">
+            <h3>Notes:</h3>
+            <textarea id="notes" placeholder="Enter payment details..."></textarea>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
